@@ -49,7 +49,7 @@ services:
     ports:
       - "48080:8080"
     volumes:
-      - "datavolume:/datavolume"
+      - "datavolume:/app/datavolume"
     # TODO: Make subdirs in the repo under /datavolume so we have /datavolume/flask and /datavolume/postgress
     #
     # wait-for-it.sh must target the internal port number, not the external
