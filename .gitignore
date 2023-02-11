@@ -1,5 +1,29 @@
 
-.idea
+
+# In many of the following, we keep the about file there and ignore all else. (The same is done for .gitkeep files.)
+
+# datavolume and dbvolume
+# Git will not add anything inside this directory except the .gitkeep file which allows git to store an empty dir.
+datavolume/*
+!datavolume/.gitkeep
+dbvolume/*
+!dbvolume/.gitkeep
+
+# MacOS
+.DS_Store
+
+
+# IntelliJ IDE settings directory. You almost never want your IDE settings in the repository unless
+# you have a very specific need like some helpful settings for an entire team to use and then,
+# you need to account for the same directory being generated and modified by team members.
+# Almost everyone simply excludes all IDE settings files and directories in all cases.
+.idea/
+
+
+# Directory to briefly hold working files inside the project but not add them to git.
+# * Tell your IDE to exclude/ignore this directory to reduce indexing & inspection overhead.
+# In IntelliJ IDEs, this is called "Mark as Excluded".
+todo/
 
 
 # Byte-compiled / optimized / DLL files

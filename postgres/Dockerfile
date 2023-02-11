@@ -1,4 +1,4 @@
-FROM bitnami/postgresql:latest
+FROM bitnami/postgresql:15.2.0
 # 2023-02-10  -  bitnami/postgresql  latest  f576e9b9b432  275MB
 # Version: 15.2.0
 # Base OS flavor: debian-11

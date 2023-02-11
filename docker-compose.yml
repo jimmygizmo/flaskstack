@@ -49,20 +49,25 @@ services:
     ports:
       - "48080:8080"
     volumes:
-      - "dbvolume:/bitnami/postgresql"
+      - "datavolume:/datavolume"
+    # TODO: Make subdirs in the repo under /datavolume so we have /datavolume/flask and /datavolume/postgress
+    #
     # wait-for-it.sh must target the internal port number, not the external
-# TODO: Determine what entrypoint command will be and use wait-for-it
-#       Something like: "/usr/local/bin/python", "/app/app.py"
-#    command: [
-#      "/app/wait-for-it.sh",
-#      "--host=flaskstack-postgres",
-#      "--port=5432",
-#      "--timeout=20",
-#      "--",
+    # TODO: Determine what entrypoint command will be and use wait-for-it
+    #       Something like: "/usr/local/bin/python", "/app/app.py"
+    #
+    command: [
+      "/app/wait-for-it.sh",
+      "--host=flaskstack-postgres",
+      "--port=5432",
+      "--timeout=20",
+      "--",
+      "/opt/bitnami/python/bin/python",
+      "-V",
+    ]
+#
 #      "/usr/local/bin/node",
 #      "/app/src/index.js",
-#    ]
-
 
 ###############################################################################
 

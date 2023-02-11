@@ -1,0 +1,29 @@
+root@d43d8d615940:/app# which python
+/opt/bitnami/python/bin/python
+root@d43d8d615940:/app# env
+HOSTNAME=d43d8d615940
+PWD=/app
+OS_FLAVOUR=debian-11
+HOME=/root
+TERM=xterm
+SHLVL=1
+BITNAMI_APP_NAME=python
+APP_VERSION=3.11.1
+ALLOW_EMPTY_PASSWORD=yes
+OS_NAME=linux
+PATH=/opt/bitnami/python/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+OS_ARCH=amd64
+_=/usr/bin/env
+root@d43d8d615940:/app#
+
+The path does have python bin dir in it.
+
+root@d43d8d615940:/app# which python
+/opt/bitnami/python/bin/python
+
+root@d43d8d615940:/app# python -V
+Python 3.11.1
+
+root@d43d8d615940:/app# /opt/bitnami/python/bin/python -V
+Python 3.11.1
+
