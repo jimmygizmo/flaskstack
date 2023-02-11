@@ -1,6 +1,6 @@
-FROM bitnami/python
-# 2023-02-11  -  bitnami/python  latest  c5757b37ea2c  645MB
-# Version: 3.11.2
+FROM bitnami/python:3.11.1
+# 2023-02-11  -  bitnami/python  latest  c5757b37ea2c  644MB
+# Version: 3.11.1
 # Base OS flavor: debian-11
 # Compressed size: 218MB
 # Entrypoint: "python"

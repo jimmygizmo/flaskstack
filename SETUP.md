@@ -1,5 +1,7 @@
-The project was developed and tested using Python 3.11.1, which is what you should also use.
+This project was developed and tested using Python 3.11.1, which is what you should also use.
 Use Pyenv. Make sure you have Python 3.11.1 installed by your Pyenv.
+
+The Flask container is built using a Bitnami Python base image which is also version 3.11.1.
 
 
 ----
