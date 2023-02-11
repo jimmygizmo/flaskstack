@@ -1,2 +1,21 @@
+# requirements-upgrade.txt
+#
+# ****  Do not use this file for normal development and deployment.  ****
+#
+# Use the version-pinned "requirements.txt" file in most cases.
+#
+# Only use this requirements-upgrade.txt file during planned-upgrade or dependency-addition phases.
+# Using this file will cause the installation of the latest version of all Python dependencies.
+# Also note, when a primary dependency changes, it may in turn change some dependencies for itself.
+# Thorough testing must be done after upgrading the version of one or more dependencies.
+# Once this file has been used and any modules -possibly- upgraded, assume that bugs could have been introduced.
+# Test your application accordingly. Make sure your application is stable after any upgrades, large or small.
+# Then create a new "requirements.txt" file with pinned versions using "pip freeze".
+# If you add a dependency to your application, add it to THIS file first and treat it as an upgrade or breaking change.
+# Test your application, then create a new "requirements.txt" file with the new module and any dependencies it
+# may have added. All will be listed with their versions by "pip freeze".
+
+# ==== Python Dependencies - No versions ====
+
 flask
 
