@@ -1,0 +1,76 @@
+version: "2"
+
+networks:
+  flaskstack-network:
+
+volumes:
+  datavolume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./datavolume
+  dbvolume:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./dbvolume
+
+services:
+
+
+  # ---- POSTGRES ----
+  flaskstack-postgres:
+    container_name: flaskstack-postgres
+    build: ./postgres
+    image: flaskstack-postgres
+    networks:
+      - flaskstack-network
+    ports:
+      - "45432:5432"
+    volumes:
+      - "dbvolume:/bitnami/postgresql"
+    environment:
+      - "ALLOW_EMPTY_PASSWORD=yes"
+
+
+  # ---- FLASK ----
+  flaskstack-flask:
+    container_name: flaskstack-flask
+    build: ./flask
+    depends_on:
+      - flaskstack-postgres
+    image: flaskstack-flask
+    networks:
+      - flaskstack-network
+    environment:
+      - "ALLOW_EMPTY_PASSWORD=yes"
+    ports:
+      - "48080:8080"
+    volumes:
+      - "dbvolume:/bitnami/postgresql"
+    # wait-for-it.sh must target the internal port number, not the external
+# TODO: Determine what entrypoint command will be and use wait-for-it
+#       Something like: "/usr/local/bin/python", "/app/app.py"
+#    command: [
+#      "/app/wait-for-it.sh",
+#      "--host=flaskstack-postgres",
+#      "--port=5432",
+#      "--timeout=20",
+#      "--",
+#      "/usr/local/bin/node",
+#      "/app/src/index.js",
+#    ]
+
+
+###############################################################################
+
+# For production deployment on AWS:
+
+#    SETUP: To use a full repository URL image name, customize a URL like the one here:
+#    image: <YOUR-AWS-USER-ID-NUMBER>.dkr.ecr.us-west-2.amazonaws.com/<YOUR-AWS-REPO-NAME>:flaskstack-flask
+#
+# CONSIDER FOR ALL CONTAINERS:
+#    restart: unless-stopped
+
