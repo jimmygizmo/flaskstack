@@ -45,9 +45,10 @@ services:
     networks:
       - flaskstack-network
     environment:
-      - "ALLOW_EMPTY_PASSWORD=yes"
+      - "FLASK_APP=nucleus.py"
+      - "FLASK_DEBUG=1"
     ports:
-      - "48080:8080"
+      - "5000:5000"
     volumes:
       - "datavolume:/app/datavolume"
     # TODO: Make subdirs in the repo under /datavolume so we have /datavolume/flask and /datavolume/postgress
@@ -56,18 +57,21 @@ services:
     # TODO: Determine what entrypoint command will be and use wait-for-it
     #       Something like: "/usr/local/bin/python", "/app/app.py"
     #
+    # TODO: As seen in the past: Cannot connect from outside the container unless you tell Flask to listen on 0.0.0.0
     command: [
       "/app/wait-for-it.sh",
       "--host=flaskstack-postgres",
       "--port=5432",
       "--timeout=20",
       "--",
-      "/opt/bitnami/python/bin/python",
-      "-V",
+      "flask",
+      "run",
+      "--host=0.0.0.0",
     ]
 #
-#      "/usr/local/bin/node",
-#      "/app/src/index.js",
+#      "/opt/bitnami/python/bin/python",
+#      "-V",
+#
 
 ###############################################################################
 
