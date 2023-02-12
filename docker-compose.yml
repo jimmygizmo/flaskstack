@@ -48,16 +48,12 @@ services:
       - "FLASK_APP=nucleus.py"
       - "FLASK_DEBUG=1"
     ports:
-      - "5000:5000"
+      - "48080:48080"
     volumes:
       - "datavolume:/app/datavolume"
     # TODO: Make subdirs in the repo under /datavolume so we have /datavolume/flask and /datavolume/postgress
     #
     # wait-for-it.sh must target the internal port number, not the external
-    # TODO: Determine what entrypoint command will be and use wait-for-it
-    #       Something like: "/usr/local/bin/python", "/app/app.py"
-    #
-    # TODO: As seen in the past: Cannot connect from outside the container unless you tell Flask to listen on 0.0.0.0
     command: [
       "/app/wait-for-it.sh",
       "--host=flaskstack-postgres",
@@ -67,13 +63,26 @@ services:
       "flask",
       "run",
       "--host=0.0.0.0",
+      "--port=48080",
     ]
+#
+# Some misc entrypoint options and notes:
+#
+# Reload would only be useful if we exported/mapped the source where we edit it into the running container.
+#      "--reload",
+#
+#      "--host=0.0.0.0",
+#      "--port=48080",
 #
 #      "/opt/bitnami/python/bin/python",
 #      "-V",
 #
 
 ###############################################################################
+
+# TODO: I can't see that the FLASK_RELOAD env var is having any effect. No reloading when nucleus.py changes.
+#   Similarly, no sign seen that --reload works. I'm missing something. Other options all seem to work, both styles.
+
 
 # For production deployment on AWS:
 
@@ -82,4 +91,12 @@ services:
 #
 # CONSIDER FOR ALL CONTAINERS:
 #    restart: unless-stopped
+
+#
+# Cannot connect to Flask from outside the container unless you tell Flask to listen on 0.0.0.0. This issue has been
+# seen before. The default (which does not work for me, at least on macOS, is localhost or 127.0.0.1. Neither work
+# on macOS. I would have to test to see if this is also the case on Linux. I suspect the issue is the same when
+# the host OS of the docker engine is Linux. It could just be a basic networking issue. 127.0.0.1/localhost are the
+# loopback address, not intended for external access. Running locally a browser probably COULD access localhost,
+# actually I know it can. It is because this is running in a container and hence it is a separate logical host.
 

@@ -1,0 +1,8 @@
+
+
+python-dotenv:
+https://github.com/theskumar/python-dotenv#readme
+
+he request context exposes "requests" and "session". The application context exposes "current_app" and "g" (temporary storage that lasts as long as the
+ request). "session" is storage dictionary that persists across requests.
+
