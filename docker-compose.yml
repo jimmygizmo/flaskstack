@@ -48,10 +48,9 @@ services:
       - "FLASK_APP=nucleus.py"
       - "FLASK_DEBUG=1"
     ports:
-      - "48080:48080"
+      - "48080:5000"
     volumes:
       - "datavolume:/app/datavolume"
-    # TODO: Make subdirs in the repo under /datavolume so we have /datavolume/flask and /datavolume/postgress
     #
     # wait-for-it.sh must target the internal port number, not the external
     command: [
@@ -60,13 +59,27 @@ services:
       "--port=5432",
       "--timeout=20",
       "--",
-      "flask",
-      "run",
-      "--host=0.0.0.0",
-      "--port=48080",
+      "python",
+      "-V",
     ]
 #
 # Some misc entrypoint options and notes:
+#
+#
+#      "flask",
+#      "--app",
+#      "nucleus",
+#      "--debug",
+#      "run",
+#      "-h",
+#      "0.0.0.0",
+#      "-p",
+#      "5000",
+#
+#
+# flask run -h localhost -p 3000
+#
+# flask --app nucleus --debug run
 #
 # Reload would only be useful if we exported/mapped the source where we edit it into the running container.
 #      "--reload",
@@ -79,9 +92,6 @@ services:
 #
 
 ###############################################################################
-
-# TODO: I can't see that the FLASK_RELOAD env var is having any effect. No reloading when nucleus.py changes.
-#   Similarly, no sign seen that --reload works. I'm missing something. Other options all seem to work, both styles.
 
 
 # For production deployment on AWS:

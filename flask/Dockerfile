@@ -38,7 +38,12 @@ COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
-COPY nucleus.py .
+# Disabled for the moment.
+#COPY nucleus.py .
+
+# COPY - IMPORTANT NUANCE: trailing slash on source dir will copy only the contents. (COPY ./nucleus .)
+#   Remove trailing slash and TODO: Observe and update. We'll re-enable this shortly.
+#COPY ./nucleus .
 
 EXPOSE 5000
 
