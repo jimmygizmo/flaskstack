@@ -5,30 +5,23 @@ FROM python:3.10-slim
 # Compressed size: 46MB
 # Entrypoint: (none)
 # Path to Python: /usr/local/bin/python
-# Path to bash: /bin/bash
-#   NOTE: A bash entry-point is common with Flask services and the Microblog API currently uses one.
-#   TODO: Entrypoint could become the startup command for supervisord to manage app start/restart.
+#
+# ------------------------------------------------------------------------------------------------------------------
+# PREVIOUS IMAGE:
+#FROM bitnami/python:3.11.1
+# 2023-02-11  -  bitnami/python  latest  c5757b37ea2c  ???MB  (Old value of 644MB I think might be a mistake)
+# Version: 3.11.1
+# Base OS flavor: debian-11
+# Compressed size: 218MB
+# Entrypoint: By default, the image just exits after starting.
+# Path to Python: /opt/bitnami/python/bin/python
 
+# TODO: Entry point will become the startup command for flask or possibly supervisord to manage flask start/restart.
 
-WORKDIR /app
+# TODO: This image size seems large. It should be possible to shrink it substantially.
+#  Plan is to remove uneeded-content from the image and assess before considering other base images.
+#  I want to avoid using an Alpine base image for security and other reasons.
 
-RUN pip install --upgrade pip
-RUN pip install --upgrade setuptools
-
-COPY requirements.txt /app/
-RUN pip install -r requirements.txt
-
-COPY api /app/
-COPY migrations /app/
-COPY microblog.py config.py boot.sh /app/
-
-COPY ./wait-for-it.sh /app/
-RUN chmod o+x /app/wait-for-it.sh
-
-EXPOSE 5000
-
-
-#CMD ./boot.sh
 
 
 # ------------------------------------------------------------------------------------------------------------------
@@ -37,13 +30,12 @@ EXPOSE 5000
 # ------------------------------------------------------------------------------------------------------------------
 # Below here all went with: #FROM bitnami/python:3.11.1
 # The purpose was different and the base image is different, so we may need almost nothing from here:
-# ITEMS DISABLED IMMEDIATELY AFTER CHANGEOVER MARKED WITH ####--####
 
-####--####WORKDIR /app
+WORKDIR /app
 
-####--####RUN pip install --upgrade pip
+RUN pip install --upgrade pip
 
-####--####RUN pip install --upgrade setuptools
+RUN pip install --upgrade setuptools
 
 # RUN pip install --upgrade wheel  # Needed?
 
@@ -53,17 +45,17 @@ EXPOSE 5000
 # The wait-for-it.sh script will be run by docker-compose and will be passed
 # arguments such that once it detects the "flaskstack-postgres" internal port is accepting connections, it will then
 # bring up flask.
-####--####COPY ./wait-for-it.sh /app/wait-for-it.sh
-####--####RUN chmod o+x /app/wait-for-it.sh
+COPY ./wait-for-it.sh /app/wait-for-it.sh
+RUN chmod o+x /app/wait-for-it.sh
 
 
 # NOTE: The /app directory already exists in this base image.
 # Create the datavolume directory which is exported and mounted externally/locally on the local host machine.
-####--####RUN mkdir /app/datavolume
+RUN mkdir /app/datavolume
 
-####--####COPY requirements.txt .
+COPY requirements.txt .
 
-####--####RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Disabled for the moment.
 #COPY nucleus.py .
@@ -72,7 +64,7 @@ EXPOSE 5000
 #   Remove trailing slash and TODO: Observe and update. We'll re-enable this shortly.
 #COPY ./nucleus .
 
-####--####EXPOSE 5000
+EXPOSE 5000
 
 
 # ------------------------------------------------------------------------------------------------------------------

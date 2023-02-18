@@ -1,0 +1,15 @@
+This dockerfile was working well for just a generic Python container and might be great to go back to.
+
+For the time being I am switching to the exact base image used by the REST service version I am starting with.
+
+This is: python:3.10-slim
+This is the new base image used in FlaskStack's flask container.
+
+The prior image was:
+This is the prior base image used by the Dockerfile we have set aside in this directory.
+
+IMPORTANT: Almost immediately, these Dockerfiles will diverge in their commands/steps. I will experiment with
+going back to using a Bitnami image soon and then may adapt the latest Dockerfile as needed.
+** The Dockerfile preserved here in this directory is only kept here for easy reference. It is not
+intended to but put back in place unmodified.
+

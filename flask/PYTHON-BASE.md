@@ -1,5 +1,7 @@
 
-## Python Base Image - Options, Details
+### TODO: Using a new base image now - UPDATE ALL THIS INFO
+
+## (old info) Python Base Image - Options, Details
 
 ----
 
