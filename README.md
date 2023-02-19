@@ -25,11 +25,11 @@ My exact roadmap for developing a robust yet generic REST application in FlaskSt
 
 The goal is to provide a diversity of robust working code for adapting any kind of frontend feature to either a GraphQL backend or a REST/SQL backend, with matching robust backend code for all options.
 
-Also note that the Apollo server in The Nucleus Stack is an API Federation service in addition to serving GraphQL. This means it can usinfy many kinds of backend data providers. Specifically, Apollo can seamlessly convert a REST API into a GraphQL API automatically. This is a capability easily leveraged when combinings The Nucleus Stack and FlaskStack, and you can always just connect your client direct to the REST service if that's what you want to do.
+Also note that the Apollo server in The Nucleus Stack is an API Federation service in addition to serving GraphQL. This means that Apollo can usinfy many kinds of backend data providers into your single API. Specifically, Apollo can seamlessly convert a REST API into a GraphQL API (or more likely, a sub-graph) automatically. This is a capability easily leveraged when combinings The Nucleus Stack and FlaskStack, and you can always just connect your client direct to the REST service if that's what you want to do.
 
 ----
 
-The Microblog API project is by Miguel Grinberg, Copyright 2021. It is released under the MIT license. The license file is included at /licenses/LICENSE-microblog-api
+The Microblog API project is by Miguel Grinberg, Copyright 2021. It is released under the MIT license. The license file for the Microblog API is included at /licenses/LICENSE-microblog-api.
 
-This project, FlaskStack, by Jim Mannix is also released under the MIT licenese and is Copyright 2023.  The license file for this project is included at /licenses/LICENSE.
+This project, FlaskStack, by Jim Mannix is also released under the MIT license and is Copyright 2023.  The license file for FlaskStack (the current project) is included at /licenses/LICENSE.
 
