@@ -1,0 +1,52 @@
+{
+  "name": "FlaskStack Web App Basics REST API",
+  "description": "Flask/REST on PostgreSQL via Compose - Backend for The Nucleus Stack or standalone - Including an adaptaion of Miguel Grinberg's Microblog API. Miguel Grinberg is the authority on Best Practice Flask and more.",
+  "repository": "https://github.com/jimmygizmo/flaskstack",
+  "env": {
+    "DISABLE_AUTH": {
+      "required": false,
+      "description": "Set to \"true\" to disable token authentication."
+    },
+    "PASSWORD_RESET_URL": {
+      "required": false,
+      "description": "Password reset link URL.",
+      "value": "http://localhost:3000/reset"
+    },
+    "MAIL_SERVER": {
+      "required": false,
+      "description": "SMTP host. For SendGrid, use \"smtp.sendgrid.net\". For Gmail use \"smtp.googlemail.com\"."
+    },
+    "MAIL_PORT": {
+      "required": false,
+      "description": "SMTP port. For SendGrid or Gmail, use 587."
+    },
+    "MAIL_USE_TLS": {
+      "required": false,
+      "description": "Set to any non-empty string to send emails via TLS. Required for both SendGrid and Gmail."
+    },
+    "MAIL_USERNAME": {
+      "required": false,
+      "description": "Email sender's account username. For SendGrid, use \"apikey\". For Gmail, use your Google username."
+    },
+    "MAIL_PASSWORD": {
+      "required": false,
+      "description": "Email sender's account password. For SendGrid, use your API Key. For Gmail, use your Google password (you will need to ALLOW LESS SECURE APPS in your Google account settings)."
+    },
+    "MAIL_DEFAULT_SENDER": {
+      "required": false,
+      "description": "The valid sender email address. This is what users will see as the From: header value. It must be the valid account address."
+    },
+    "SECRET_KEY": {
+      "description": "A secret key used to sign tokens.",
+      "generator": "secret"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql:mini"
+    }
+  ],
+  "scripts": {
+    "postdeploy": "flask db upgrade && flask fake users 10 && flask fake posts 100"
+  }
+}

@@ -3,6 +3,15 @@
 
 ## (old info) Python Base Image - Options, Details
 
+NOTE: Although the image uses 3.10.10, the only good Pyenv versions which are currently available for local use via Venv which I might
+consider are:   3.10.9  or  3.11.0. So we can't match exactly but all are close. And I'd prefer a close match with
+a higher rather than lower Python version since Python is the base dependency. Hence, we stick with 3.11.1 in our
+virtual environment, which is only to assist the IDE most of the time anyhow.
+The local VE is mostly for helping the IDE do code inspection accurately while you type and for the occasional one-off
+development task or experiment. The code we are really running and testing should usually be running in the container,
+not in the VE you create with Pyenv. If you're not running your code with Docker-compose 98% of the time, you are
+probably doing something shall we say, non-optimal. The whole point is to have a great running stack to develop against.
+
 ----
 
 Large images are costly to move around and store and they slow down the code/test iteration cycle,

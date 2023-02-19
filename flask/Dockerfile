@@ -6,9 +6,13 @@ FROM python:3.10-slim
 # Entrypoint: (none)
 # Path to Python: /usr/local/bin/python
 # Path to bash: /bin/bash
-#   NOTE: A bash entry-point is common with Flask services and the Microblog API currently uses one.
+#   NOTE: A bash entry-point is common with Flask services and the FlaskStack API currently uses one.
 #   TODO: Entrypoint could become the startup command for supervisord to manage app start/restart.
 
+ENV FLASK_APP flaskstack.py
+#ENV FLASK_ENV production
+ENV FLASK_ENV development
+ENV FLASK_DEBUG 1
 
 WORKDIR /app
 
@@ -18,9 +22,9 @@ RUN pip install --upgrade setuptools
 COPY requirements.txt /app/
 RUN pip install -r requirements.txt
 
-COPY api /app/
-COPY migrations /app/
-COPY microblog.py config.py boot.sh /app/
+COPY ./api /app/api/
+COPY ./migrations /app/migrations/
+COPY flaskstack.py config.py boot.sh /app/
 
 COPY ./wait-for-it.sh /app/
 RUN chmod o+x /app/wait-for-it.sh

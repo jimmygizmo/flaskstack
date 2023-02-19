@@ -45,7 +45,7 @@ services:
     networks:
       - flaskstack-network
     environment:
-      - "FLASK_APP=nucleus.py"
+      - "FLASK_APP=flaskstack.py"
       - "FLASK_DEBUG=1"
     ports:
       - "48080:5000"

@@ -1,0 +1,14 @@
+Hello {{ username }},
+
+To reset your password, follow this link:
+
+{{ url }}
+
+If you did not request a password reset, you can just ignore this message.
+Your email address may have been entered by mistake.
+If you were having trouble logging-in and did request this password reset, simply follow the instructions at the link above.
+
+Thank you.
+
+NOTE: This email was sent from a do-not-reply sender. Replies are not received or monitored.
+
