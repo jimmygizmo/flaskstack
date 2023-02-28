@@ -25,7 +25,7 @@ My exact roadmap for developing a robust yet generic REST application in FlaskSt
 
 The goal is to provide a diversity of robust working code for adapting any kind of frontend feature to either a GraphQL backend or a REST/SQL backend, with matching robust backend code for all options.
 
-Also note that the Apollo server in The Nucleus Stack is an API Federation service in addition to serving GraphQL. This means that Apollo can usinfy many kinds of backend data providers into your single API. Specifically, Apollo can seamlessly convert a REST API into a GraphQL API (or more likely, a sub-graph) automatically. This is a capability easily leveraged when combinings The Nucleus Stack and FlaskStack, and you can always just connect your client direct to the REST service if that's what you want to do.
+Also note that the Apollo server in The Nucleus Stack is an API Federation service in addition to serving GraphQL. This means that Apollo can unify many kinds of backend data providers into your single API. Specifically, Apollo can seamlessly convert a REST API into a GraphQL API (or more likely, a sub-graph) automatically. This is a capability easily leveraged when combinings The Nucleus Stack and FlaskStack, and you can always just connect your client direct to the REST service if that's what you want to do.
 
 ----
 

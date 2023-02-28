@@ -58,7 +58,7 @@ def create_app(config_class=Config):
 
     @app.after_request
     def after_request(response):
-        # Werkzeu sometimes does not flush the request body so we do it here
+        # Werkzeug sometimes does not flush the request body so we do it here
         request.get_data()
         return response
 
