@@ -1,5 +1,4 @@
 
-
 # In many of the following, we keep the about file there and ignore all else. (The same is done for .gitkeep files.)
 
 # datavolume and dbvolume
@@ -9,9 +8,12 @@ datavolume/*
 dbvolume/*
 !dbvolume/.gitkeep
 
+# SSL:/TLS Certificates and Other Secrets
+secrets/*
+!secrets/about-secrets.txt
+
 # MacOS
 .DS_Store
-
 
 # IntelliJ IDE settings directory. You almost never want your IDE settings in the repository unless
 # you have a very specific need like some helpful settings for an entire team to use and then,
